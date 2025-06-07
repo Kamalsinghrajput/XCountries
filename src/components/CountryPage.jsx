@@ -3,6 +3,7 @@ import CountryCard from "./CountryCard";
 
 const CountryPage = () => {
   const [countries, setCountries] = useState([]);
+  const [error, setError]= useState(null);
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -12,7 +13,8 @@ const CountryPage = () => {
         const data = await response.json();
         setCountries(data)
       } catch (error) {
-        console.log("Error fetching data:", error);
+        console.error("Error fetching data:", error);
+        setError(error)
       }
     };
     fetchCountries();
